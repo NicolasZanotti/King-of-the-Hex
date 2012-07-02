@@ -45,6 +45,8 @@ package
 			ct.events.add(bootStrapper, Bootstrapper.TOTALFRAMES_COMPLETE, onTotalFramesComplete);
 			ct.events.add(EventDispatcher(loaderInfo["uncaughtErrorEvents"]), "uncaughtError", onGlobalError);
 			ct.events.add(stage, KeyboardEvent.KEY_DOWN, onKeyDown);
+			trace('KeyboardEvent.KEY_DOWN: ' + (KeyboardEvent.KEY_DOWN));
+			
 
 			CONFIG::MOBILE
 			{
