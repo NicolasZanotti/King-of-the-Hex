@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+@author Nicolas Zanotti
+@version 20110928
+@see http://fdt.powerflasher.com/docs/FDT_Ant_Tasks
+@see http://blog.vizio360.co.uk/2009/11/eclipse-get-project-name-within-ant-script/
+
+Add this build file to the root of your FDT project.
+
+If the launch does not work do the following:
+	1. Go to Run -> External Tools -> External Tools Configurations. 
+	2. Select this ANT build file. 
+	3. Go to the JRE tab and select "Run in the same JRE as the workplace".
+	4. Make sure to enable "permit debugging" in the FLA's publish settings.
+	5. Reload your browser as soon as the compilation was completed.
+-->
+
+<project name="TEST_FDT_Debug_Launcher" default="publishInFlashIDE" basedir=".">
+	<target name="publishInFlashIDE">
+		<fdt.flashCompile file="${basedir}/project.fla" timeout="5000"/>
+		<xmlproperty file=".project" />
+		<fdt.startDebugger projectname="${projectDescription.name}" switchperspectiveonbreakpoint="true" />
+		<fdt.extSWFViewer.startSWF file="${basedir}/bin/main.swf" width="800" height="600" focusprocess="Eclipse"/>
+	</target>
+</project>
