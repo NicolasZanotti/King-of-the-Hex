@@ -1,9 +1,7 @@
 package hex.control
 {
-	import hex.model.ColorValues;
-	import hex.model.SinglePlayerState;
-	import hex.model.MultiplayerState;
 	import hex.model.ApplicationState;
+	import hex.model.Players;
 
 	import stoletheshow.control.Controllable;
 
@@ -42,13 +40,13 @@ package hex.control
 
 		protected function onCreateNewMultiplayerGame():void
 		{
-			ct.locator.playerState = new MultiplayerState(2);
+			ct.locator.players = new Players(2);
 			ct.locator.appState.state = ApplicationState.CAMERA_COLORPICKER;
 		}
 
 		protected function onCreateNewSinglePlayerGame():void
 		{
-			ct.locator.playerState = new SinglePlayerState(new ColorValues().values);
+			ct.locator.players = new Players(1);
 			ct.locator.appState.state = ApplicationState.GUESS;
 		}
 

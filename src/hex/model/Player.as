@@ -3,13 +3,14 @@ package hex.model
 	import stoletheshow.model.Color;
 
 	/**
+	 * State for a single player.
+	 * 
 	 * @author Nicolas Zanotti
 	 */
-	public class SinglePlayerState implements PlayerState
+	public class Player
 	{
 		protected var _values:Array;
 		protected var _valuesIndex:uint = 0;
-		protected var _name:String;
 		/*
 		 * Progress tracking
 		 */
@@ -18,10 +19,11 @@ package hex.model
 		/*
 		 * Ingame colors
 		 */
-		protected var _given:Color;
-		protected var _chosen:Color;
+		public var given:Color;
+		public var chosen:Color;
+		public var name:String;
 
-		public function SinglePlayerState(colorValues:Array)
+		public function Player(colorValues:Array)
 		{
 			_values = colorValues;
 		}
@@ -40,11 +42,6 @@ package hex.model
 			return new Color(_values[_valuesIndex]);
 		}
 
-		public function get hasNextRound():Boolean
-		{
-			return _valuesIndex < _values.length
-		}
-
 		public function incrementCorrectAnswers():void
 		{
 			_correctAnswersAmount += 1;
@@ -59,17 +56,5 @@ package hex.model
 
 			return percent
 		}
-
-		public function get given():Color { return _given; }
-
-		public function set given(given:Color):void { _given = given; }
-
-		public function get chosen():Color{ return _chosen; }
-
-		public function set chosen(chosen:Color):void { _chosen = chosen; }
-
-		public function get name():String { return _name; }
-		
-		public function set name(s:String):void { _name = s; }
 	}
 }

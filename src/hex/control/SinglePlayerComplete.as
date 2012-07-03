@@ -41,7 +41,7 @@ package hex.control
 			ct.events.add(btHome, MouseEvent.CLICK, onBthomeClick);
 
 			// Bind properties
-			var percent:uint = ct.locator.playerState.percentageRight;
+			var percent:uint = ct.locator.players.currentPlayer.percentageRight;
 
 			if (percent == 100)
 			{

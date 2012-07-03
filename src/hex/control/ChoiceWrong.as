@@ -1,8 +1,8 @@
 package hex.control
 {
 	import hex.model.ApplicationState;
-	import hex.model.MultiplayerState;
-	import hex.model.SinglePlayerState;
+	import hex.model.Players;
+	import hex.model.Player;
 	import hex.ui.Patch;
 
 	import stoletheshow.control.Controllable;
@@ -40,14 +40,14 @@ package hex.control
 
 		protected function onNextLevel():void
 		{
-			if (ct.locator.playerState is MultiplayerState)
+			if (ct.locator.players is Players)
 			{
-				(ct.locator.playerState as MultiplayerState).nextPlayer();
-				ct.locator.appState.state = ct.locator.playerState.hasNextRound ? ApplicationState.CAMERA_COLORPICKER : ApplicationState.MULTIPLAYER_COMPLETE;
+				(ct.locator.players as Players).nextPlayer();
+				ct.locator.appState.state = ct.locator.players.hasNextRound ? ApplicationState.CAMERA_COLORPICKER : ApplicationState.MULTIPLAYER_COMPLETE;
 			}
-			else if (ct.locator.playerState is SinglePlayerState)
+			else if (ct.locator.players is Player)
 			{
-				ct.locator.appState.state = ct.locator.playerState.hasNextRound ? ApplicationState.GUESS : ApplicationState.SINGLEPLAYER_COMPLETE;
+				ct.locator.appState.state = ct.locator.players.hasNextRound ? ApplicationState.GUESS : ApplicationState.SINGLEPLAYER_COMPLETE;
 			}
 		}
 
@@ -59,12 +59,12 @@ package hex.control
 			// Configure listeners
 			ct.events.add(btNext, MouseEvent.CLICK, onBtnextClick);
 
-			chosen.color = ct.locator.playerState.chosen;
-			given.color = ct.locator.playerState.given;
+			chosen.color = ct.locator.players.currentPlayer.chosen;
+			given.color = ct.locator.players.currentPlayer.given;
 
 			// Bind properties
-			chosenValue.text = ct.locator.playerState.chosen.octal
-			givenValue.text = ct.locator.playerState.given.octal
+			chosenValue.text = ct.locator.players.currentPlayer.chosen.octal
+			givenValue.text = ct.locator.players.currentPlayer.given.octal
 		}
 
 		public function dispose():void

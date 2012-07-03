@@ -10,7 +10,7 @@ package hex.model
 		protected var _main:Main
 		protected var _hasAppState:Boolean = false
 		protected var _appState:ApplicationState
-		public var playerState:PlayerState;
+		public var players:Players;
 
 		public function Locator(main:Main)
 		{

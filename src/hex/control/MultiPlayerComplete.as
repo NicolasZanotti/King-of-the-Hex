@@ -1,6 +1,5 @@
 package hex.control
 {
-	import hex.model.MultiplayerState;
 	import hex.model.ApplicationState;
 
 	import stoletheshow.control.Controllable;
@@ -43,16 +42,15 @@ package hex.control
 			// Configure listeners
 			ct.events.add(btHome, MouseEvent.CLICK, onBthomeClick);
 
-			var s:MultiplayerState = ct.locator.playerState as MultiplayerState
-
-			s.resetPlayerIndex();
-			var percentage1:uint = s.percentageRight;
-			var name1:String = s.name
+			// Insert text
+			ct.locator.players.resetPlayerIndex();
+			var percentage1:uint = ct.locator.players.currentPlayer.percentageRight;
+			var name1:String = ct.locator.players.currentPlayer.name
 			tfPlayer1Percent.text = name1 + ": " + percentage1.toString() + "%";
 
-			s.nextPlayer();
-			var percentage2:uint = s.percentageRight
-			var name2:String = s.name
+			ct.locator.players.nextPlayer();
+			var percentage2:uint = ct.locator.players.currentPlayer.percentageRight
+			var name2:String = ct.locator.players.currentPlayer.name
 			tfPlayer2Percent.text = name2 + ": " + percentage2.toString() + "%";
 
 			if (percentage1 == percentage2)

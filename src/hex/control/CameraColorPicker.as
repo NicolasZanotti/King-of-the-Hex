@@ -1,7 +1,7 @@
 package hex.control
 {
-	import hex.model.MultiplayerState;
 	import hex.model.ApplicationState;
+
 	import stoletheshow.control.Controllable;
 	import stoletheshow.mediators.CameraColorPickerMediator;
 
@@ -36,10 +36,7 @@ package hex.control
 		protected function onBtnextClick(event:MouseEvent):void
 		{
 			event.stopPropagation();
-			
-			var multiPlayer:MultiplayerState = ct.locator.playerState as MultiplayerState;
-			
-			multiPlayer.chosen = mediator.color;
+			ct.locator.players.currentPlayer.chosen = mediator.color;
 			ct.locator.appState.state = ApplicationState.GUESS;
 		}
 
@@ -60,7 +57,7 @@ package hex.control
 
 			// Bind properties
 			mediator = new CameraColorPickerMediator(videoContainer, btStart, btStop).withColorValueDisplay(colorValue);
-			message.text = "Player " + ct.locator.playerState.name + ", choose a color using your camera";
+			message.text = "Player " + ct.locator.players.currentPlayer.name + ", choose a color using your camera";
 
 			// Restore state
 			btNext.visible = false;

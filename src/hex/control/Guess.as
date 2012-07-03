@@ -1,19 +1,15 @@
 package hex.control
 {
-	import hex.model.MultiplayerState;
-
-	import flash.text.TextField;
-
-	import stoletheshow.control.Controller;
-
 	import hex.model.ApplicationState;
-	import hex.model.PlayerState;
+	import hex.model.Player;
+	import hex.model.Players;
 	import hex.model.RandomColor;
 	import hex.ui.Drag;
 	import hex.ui.Patch;
 	import hex.ui.Target;
 
 	import stoletheshow.control.Controllable;
+	import stoletheshow.control.Controller;
 	import stoletheshow.display.helpers.DisplayListHelper;
 	import stoletheshow.model.Color;
 
@@ -21,6 +17,7 @@ package hex.control
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
+	import flash.text.TextField;
 	import flash.utils.setTimeout;
 
 	/**
@@ -52,17 +49,17 @@ package hex.control
 			_targets = helper.getChildrenOfType(Target)
 			_bounds = createDragBounds()
 
-			ct.locator.playerState.given = colorPatch.color = ct.locator.playerState.nextColor;
-			trace('ct.locator.playerState.given.hexadecimal: ' + (ct.locator.playerState.given.hexadecimal));
+			ct.locator.players.currentPlayer.given = colorPatch.color = ct.locator.players.currentPlayer.nextColor;
+			trace('ct.locator.playerState.given.hexadecimal: ' + (ct.locator.players.currentPlayer.given.hexadecimal));
 
 			var values:Array = createArrayOfValues(colorPatch.color)
 			var valuesWithRandom:Array = fillWithRandomValues(values, _drags.length)
 
 			applyColorValuesToButtonTexts(valuesWithRandom);
 
-			if (ct.locator.playerState is MultiplayerState)
+			if (ct.locator.players is Players)
 			{
-				tfPlayer.text = (ct.locator.playerState as MultiplayerState).name + ", guess the color";
+				tfPlayer.text = ct.locator.players.currentPlayer.name + ", guess the color";
 			}
 
 			// Configure listeners
@@ -168,20 +165,20 @@ package hex.control
 		{
 			stage.dispatchEvent(new Event(Controller.INTERFACE_UNLOCK));
 
-			var s:PlayerState = ct.locator.playerState;
+			var player:Player = ct.locator.players.currentPlayer;
 
-			s.chosen = new Color("0x" + t1.isOccupiedBy.text + t2.isOccupiedBy.text + t3.isOccupiedBy.text);
+			player.chosen = new Color("0x" + t1.isOccupiedBy.text + t2.isOccupiedBy.text + t3.isOccupiedBy.text);
 
-			var isCorrectChoice:Boolean = s.chosen.value == s.given.value
+			var isCorrectChoice:Boolean = player.chosen.value == player.given.value
 
 			if (isCorrectChoice)
 			{
-				s.incrementCorrectAnswers();
+				player.incrementCorrectAnswers();
 				ct.locator.appState.state = ApplicationState.CHOICE_RIGHT;
 			}
 			else
 			{
-				s.incrementWrongAnswers();
+				player.incrementWrongAnswers();
 				ct.locator.appState.state = ApplicationState.CHOICE_WRONG;
 			}
 		}
