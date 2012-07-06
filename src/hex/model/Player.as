@@ -10,7 +10,7 @@ package hex.model
 	public class Player
 	{
 		protected var _values:Array;
-		protected var _valuesIndex:uint = 0;
+		protected var _valuesIndex:int = -1;
 		/*
 		 * Progress tracking
 		 */
@@ -32,19 +32,20 @@ package hex.model
 		{
 			_falseAnswersAmount += 1;
 		}
-		
+
+		public function incrementCorrectAnswers():void
+		{
+			_correctAnswersAmount += 1;
+		}
+
 		/* ------------------------------------------------------------------------------- */
 		/*  Getters and setters */
 		/* ------------------------------------------------------------------------------- */
 		public function get nextColor():Color
 		{
+			trace('_valuesIndex (before): ' + (_valuesIndex));
 			_valuesIndex += 1;
 			return new Color(_values[_valuesIndex]);
-		}
-
-		public function incrementCorrectAnswers():void
-		{
-			_correctAnswersAmount += 1;
 		}
 
 		public function get percentageRight():uint

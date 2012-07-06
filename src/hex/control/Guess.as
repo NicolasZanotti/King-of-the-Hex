@@ -2,7 +2,6 @@ package hex.control
 {
 	import hex.model.ApplicationState;
 	import hex.model.Player;
-	import hex.model.Players;
 	import hex.model.RandomColor;
 	import hex.ui.Drag;
 	import hex.ui.Patch;
@@ -43,6 +42,7 @@ package hex.control
 		/* ------------------------------------------------------------------------------- */
 		public function init():void
 		{
+			// Configure components
 			var helper:DisplayListHelper = new DisplayListHelper(this)
 
 			_drags = helper.getChildrenOfType(Drag)
@@ -51,16 +51,13 @@ package hex.control
 
 			ct.locator.players.currentPlayer.given = colorPatch.color = ct.locator.players.currentPlayer.nextColor;
 			trace('ct.locator.playerState.given.hexadecimal: ' + (ct.locator.players.currentPlayer.given.hexadecimal));
-
+			
 			var values:Array = createArrayOfValues(colorPatch.color)
 			var valuesWithRandom:Array = fillWithRandomValues(values, _drags.length)
 
 			applyColorValuesToButtonTexts(valuesWithRandom);
 
-			if (ct.locator.players is Players)
-			{
-				tfPlayer.text = ct.locator.players.currentPlayer.name + ", guess the color";
-			}
+			tfPlayer.text = ct.locator.players.currentPlayer.name != null ? ct.locator.players.currentPlayer.name + ", guess the color" : "";
 
 			// Configure listeners
 			for each (var drag:Drag in _drags)

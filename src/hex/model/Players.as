@@ -38,6 +38,7 @@ package hex.model
 		 */
 		public function get hasNextRound():Boolean
 		{
+			trace('_rounds: ' + (_rounds));
 			return _rounds > 0;
 		}
 
@@ -54,6 +55,11 @@ package hex.model
 		public function resetPlayerIndex():void
 		{
 			_playerIndex = 0;
+		}
+
+		public function get isMultiPlayer():Boolean
+		{
+			return _players.length > 1;
 		}
 
 		public function get currentPlayer():Player
