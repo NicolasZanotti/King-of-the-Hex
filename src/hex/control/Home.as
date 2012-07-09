@@ -40,13 +40,13 @@ package hex.control
 
 		protected function onCreateNewMultiplayerGame():void
 		{
-			ct.locator.players = new Players(2);
+			ct.locator.players = new Players(2, 2);
 			ct.locator.appState.state = ApplicationState.CAMERA_COLORPICKER;
 		}
 
 		protected function onCreateNewSinglePlayerGame():void
 		{
-			ct.locator.players = new Players(1);
+			ct.locator.players = new Players(1, 3);
 			ct.locator.appState.state = ApplicationState.GUESS;
 		}
 

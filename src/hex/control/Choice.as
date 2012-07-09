@@ -32,7 +32,7 @@ package hex.control
 			
 			if (ct.locator.players.isMultiPlayer)
 			{
-				ct.locator.players.nextPlayer();
+				ct.locator.players.nextRound();
 				ct.locator.appState.state = ct.locator.players.hasNextRound ? ApplicationState.CAMERA_COLORPICKER : ApplicationState.MULTIPLAYER_COMPLETE;
 			}
 			else

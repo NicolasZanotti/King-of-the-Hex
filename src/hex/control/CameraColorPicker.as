@@ -36,7 +36,8 @@ package hex.control
 		protected function onBtnextClick(event:MouseEvent):void
 		{
 			event.stopPropagation();
-			ct.locator.players.currentPlayer.chosen = mediator.color;
+			ct.locator.players.selectedColorForNextPlayer = mediator.color;
+			ct.locator.players.nextPlayer();
 			ct.locator.appState.state = ApplicationState.GUESS;
 		}
 

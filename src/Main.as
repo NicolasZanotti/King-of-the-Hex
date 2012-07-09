@@ -75,8 +75,6 @@ package
 			event.stopPropagation();
 			event.preventDefault();
 
-			trace(event.keyCode);
-
 			if (state != ApplicationState.HOME && (event.keyCode == Keyboard.HOME || event.keyCode == Keyboard.BACK || event.keyCode == Keyboard.BACKSPACE))
 			{
 				trace("returning home");

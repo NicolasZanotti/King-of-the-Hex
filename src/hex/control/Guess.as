@@ -48,7 +48,7 @@ package hex.control
 			_drags = helper.getChildrenOfType(Drag)
 			_targets = helper.getChildrenOfType(Target)
 			_bounds = createDragBounds()
-
+	
 			ct.locator.players.currentPlayer.given = colorPatch.color = ct.locator.players.currentPlayer.nextColor;
 			trace('ct.locator.playerState.given.hexadecimal: ' + (ct.locator.players.currentPlayer.given.hexadecimal));
 			

@@ -9,7 +9,7 @@ package hex.model
 	 */
 	public class Player
 	{
-		protected var _values:Array;
+		public var values:Array;
 		protected var _valuesIndex:int = -1;
 		/*
 		 * Progress tracking
@@ -25,7 +25,7 @@ package hex.model
 
 		public function Player(colorValues:Array)
 		{
-			_values = colorValues;
+			values = colorValues;
 		}
 
 		public function incrementWrongAnswers():void
@@ -45,12 +45,12 @@ package hex.model
 		{
 			trace('_valuesIndex (before): ' + (_valuesIndex));
 			_valuesIndex += 1;
-			return new Color(_values[_valuesIndex]);
+			return new Color(values[_valuesIndex]);
 		}
 
 		public function get percentageRight():uint
 		{
-			var percent:Number = Math.round(_correctAnswersAmount * 100 / _values.length)
+			var percent:Number = Math.round(_correctAnswersAmount * 100 / values.length)
 
 			if (percent < 0) throw new Error("Less than 0%");
 			else if (percent > 100) throw new Error("More than 100%")
