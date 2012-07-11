@@ -96,6 +96,7 @@ package hex.control
 		protected function onDragMouseUp(event:MouseEvent):void
 		{
 			event.stopPropagation()
+			
 			drag.stopDrag()
 
 			var target:Target, hasHit:Boolean;

@@ -4,6 +4,7 @@ $ cat .gitignore
 ###################
 *.apk
 *.ipa
+*.swf
 
 # Eclipse project files #
 #########################

@@ -25,12 +25,9 @@ package hex.model
 			}
 			else
 			{
-				var emptyValues:Array = [];
-				emptyValues.length = rounds;
-
 				for (var i:int = 0, n:int = _totalPlayers; i < n; i++)
 				{
-					_players.push(new Player(emptyValues));
+					_players.push(new Player());
 					_players[i].name = "Player " + (i + 1);
 				}
 			}
@@ -63,10 +60,7 @@ package hex.model
 
 		public function set selectedColorForNextPlayer(color:Color):void
 		{
-			var next:Player = _players[nextPlayerIndex] as Player;
-
-			next.values[_currentRound - 1] = color.value;
-			trace('next.values: ' + (next.values));
+			(_players[nextPlayerIndex] as Player).addColor(color);
 		}
 
 		public function get isMultiPlayer():Boolean
@@ -83,10 +77,5 @@ package hex.model
 		{
 			return (_playerIndex + 1) % _players.length;
 		}
-		/*
-		protected function get previousPlayer():Player
-		{
-		return _players[(_playerIndex < 1 ? _players.length - 1 : _playerIndex - 1)];
-		}*/
 	}
 }
