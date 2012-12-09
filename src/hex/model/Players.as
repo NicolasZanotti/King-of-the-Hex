@@ -42,6 +42,11 @@ package hex.model
 			return _rounds > 0;
 		}
 
+		public function get isFirstRound():Boolean
+		{
+			return _currentRound == 1;
+		}
+
 		public function nextRound():void
 		{
 			_currentRound += 1;

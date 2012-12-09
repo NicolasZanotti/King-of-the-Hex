@@ -28,7 +28,7 @@ package hex.control
 		public var colorPatch:Patch;
 		public var b1:Drag, b2:Drag, b3:Drag, b4:Drag, b5:Drag;
 		public var t1:Target, t2:Target, t3:Target
-		public var tfPlayer:TextField;
+		public var tfPlayer:TextField, tfHelp:TextField;
 		protected var _drags:Array, _targets:Array, _bounds:Rectangle
 		protected var drag:Drag;
 
@@ -57,8 +57,10 @@ package hex.control
 
 			applyColorValuesToButtonTexts(valuesWithRandom);
 
-			tfPlayer.text = ct.locator.players.currentPlayer.name != null ? ct.locator.players.currentPlayer.name + ", guess the color" : "";
-
+			tfPlayer.text = ct.locator.players.currentPlayer.name != null ? ct.locator.players.currentPlayer.name + ", guess the color!" : "Guess the color!";
+			tfHelp.text = ct.locator.players.isFirstRound ? "Guess the color on the left by dragging the values on the bottom to the targets marked with X." : "";
+			
+			
 			// Configure listeners
 			for each (var drag:Drag in _drags)
 			{

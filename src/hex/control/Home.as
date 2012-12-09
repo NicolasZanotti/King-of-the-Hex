@@ -1,5 +1,6 @@
 package hex.control
 {
+	import hex.model.ColorValues;
 	import hex.model.ApplicationState;
 	import hex.model.Players;
 
@@ -46,7 +47,7 @@ package hex.control
 
 		protected function onCreateNewSinglePlayerGame():void
 		{
-			ct.locator.players = new Players(1, 3);
+			ct.locator.players = new Players(1, new ColorValues().values.length);
 			ct.locator.appState.state = ApplicationState.GUESS;
 		}
 

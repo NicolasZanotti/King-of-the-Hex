@@ -29,10 +29,10 @@ package hex.ui
 			bt.enabled = false;
 
 			_glowTween = new TweenMaxVars()
-			_glowTween.glowFilter(30, 30, 0x91e600)
+			_glowTween.glowFilter(40, 40, 0x00CFD8, 1, 3)
 
 			_blurTween = new TweenMaxVars()
-			_blurTween.glowFilter(0, 0, 0x91e600)
+			_blurTween.glowFilter(0, 0, 0x00CFD8, 1, 0)
 		}
 
 		public function get text():String
@@ -54,13 +54,13 @@ package hex.ui
 				if (!_isGlowing && isOccupiedBy == null)
 				{
 					_isGlowing = true;
-					TweenMax.to(bg, 1, _glowTween);
+					TweenMax.to(bg, .5, _glowTween);
 				}
 			}
 			else if (_isGlowing)
 			{
 				_isGlowing = false;
-				TweenMax.to(bg, 1, _blurTween);
+				TweenMax.to(bg, .5, _blurTween);
 			}
 		}
 
