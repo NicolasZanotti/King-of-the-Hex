@@ -41,5 +41,5 @@
         <image32x32>hex-icon_32x32.png</image32x32>
         <image16x16>hex-icon_16x16.png</image16x16>
     </icon>
-    <supportedProfiles>desktop</supportedProfiles>
+    <supportedProfiles>desktop extendedDesktop</supportedProfiles>
 </application>
